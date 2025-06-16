@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 declare global {
@@ -16,7 +16,7 @@ export default function ARViewer() {
     let camera: THREE.Camera;
     let arSource: any;
     let arContext: any;
-    let arMarkerControls: any;
+    // let arMarkerControls: any;
     let cube: THREE.Mesh;
 
     scene = new THREE.Scene();
@@ -74,12 +74,12 @@ export default function ARViewer() {
       camera.projectionMatrix.copy(arContext.getProjectionMatrix());
     });
 
-    arMarkerControls = new window.ARjs.MarkerControls(arContext, camera, {
-      type: "pattern",
-      patternUrl:
-        "https://raw.githack.com/AR-js-org/AR.js/master/data/data/patt.hiro",
-      changeMatrixMode: "cameraTransformMatrix",
-    });
+    // arMarkerControls = new window.ARjs.MarkerControls(arContext, camera, {
+    //   type: "pattern",
+    //   patternUrl:
+    //     "https://raw.githack.com/AR-js-org/AR.js/master/data/data/patt.hiro",
+    //   changeMatrixMode: "cameraTransformMatrix",
+    // });
 
     scene.visible = false;
 
