@@ -1,11 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-declare global {
-  interface Window {
-    ARjs: any;
-  }
-}
+declare const THREEx: any;
 
 export default function ARViewer() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -16,7 +12,6 @@ export default function ARViewer() {
     let camera: THREE.Camera;
     let arSource: any;
     let arContext: any;
-    // let arMarkerControls: any;
     let cube: THREE.Mesh;
 
     scene = new THREE.Scene();
@@ -39,7 +34,7 @@ export default function ARViewer() {
     }
 
     // khởi tạo AR.js Sourse, lấy webcam làm nguồn chính
-    arSource = new window.ARjs.Source({
+    arSource = new THREEx.ArToolkitSource({
       sourceType: "webcam", // dùng webcam làm input
     });
 
@@ -64,7 +59,7 @@ export default function ARViewer() {
 
     window.addEventListener("resize", onResizeHandler);
 
-    arContext = new window.ARjs.Context({
+    arContext = new THREEx.ArToolkitContext({
       cameraParametersUrl:
         "https://raw.githack.com/AR-js-org/AR.js/master/data/data/camera_para.dat",
       detectionMode: "mono",
@@ -74,12 +69,12 @@ export default function ARViewer() {
       camera.projectionMatrix.copy(arContext.getProjectionMatrix());
     });
 
-    // arMarkerControls = new window.ARjs.MarkerControls(arContext, camera, {
-    //   type: "pattern",
-    //   patternUrl:
-    //     "https://raw.githack.com/AR-js-org/AR.js/master/data/data/patt.hiro",
-    //   changeMatrixMode: "cameraTransformMatrix",
-    // });
+    const arMarkerControls = new THREEx.ArMarkerControls(arContext, camera, {
+      type: "pattern",
+      patternUrl:
+        "https://raw.githack.com/AR-js-org/AR.js/master/data/data/patt.hiro",
+      changeMatrixMode: "modelViewMatrix",
+    });
 
     scene.visible = false;
 
