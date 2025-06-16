@@ -69,7 +69,7 @@ export default function ARViewer() {
       camera.projectionMatrix.copy(arContext.getProjectionMatrix());
     });
 
-    const arMarkerControls = new THREEx.ArMarkerControls(arContext, camera, {
+    new THREEx.ArMarkerControls(arContext, camera, {
       type: "pattern",
       patternUrl:
         "https://raw.githack.com/AR-js-org/AR.js/master/data/data/patt.hiro",
