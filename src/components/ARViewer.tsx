@@ -31,9 +31,8 @@ export default function ARViewer() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(new THREE.Color("lightgrey"), 0);
     renderer.domElement.style.position = "absolute";
-    renderer.domElement.style.top = "50%";
-    renderer.domElement.style.left = "50%";
-    renderer.domElement.style.transform = "translate(-50%, -50%)";
+    renderer.domElement.style.top = "0";
+    renderer.domElement.style.right = "0";
 
     if (containerRef.current) {
       containerRef.current.appendChild(renderer.domElement);
